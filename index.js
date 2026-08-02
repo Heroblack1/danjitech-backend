@@ -9,10 +9,7 @@ const app = express();
 
 const PORT = process.env.PORT || 5000;
 
-// =========================
 // CORS
-// =========================
-
 app.use(
   cors({
     origin: ["https://danji-frontend-moup.vercel.app", "http://localhost:5173"],
@@ -21,36 +18,22 @@ app.use(
   }),
 );
 
-app.options("*", cors());
-
-// =========================
-// BODY PARSER
-// =========================
-
+// Body parser
 app.use(express.json());
 
-// =========================
-// ROUTES
-// =========================
-
+// Routes
 const contactRoutes = require("./routes/contactRoute");
 const adminRoutes = require("./routes/admin");
 
 app.use("/contact", contactRoutes);
 app.use("/admin", adminRoutes);
 
-// =========================
-// TEST ROUTE
-// =========================
-
+// Test route
 app.get("/", (req, res) => {
   res.send("DanjiTech backend is running!");
 });
 
-// =========================
-// DATABASE
-// =========================
-
+// Database
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
