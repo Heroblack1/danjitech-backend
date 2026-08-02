@@ -9,23 +9,46 @@ const app = express();
 
 const PORT = process.env.PORT || 5000;
 
-// Middleware
-app.use(cors());
+// =========================
+// CORS
+// =========================
+
+app.use(
+  cors({
+    origin: ["https://danji-frontend-moup.vercel.app", "http://localhost:5173"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  }),
+);
+
+// =========================
+// BODY PARSER
+// =========================
+
 app.use(express.json());
 
-// Routes
+// =========================
+// ROUTES
+// =========================
+
 const contactRoutes = require("./routes/contactRoute");
 const adminRoutes = require("./routes/admin");
 
 app.use("/contact", contactRoutes);
 app.use("/admin", adminRoutes);
 
-// Test route
+// =========================
+// TEST ROUTE
+// =========================
+
 app.get("/", (req, res) => {
   res.send("DanjiTech backend is running!");
 });
 
-// Connect to MongoDB
+// =========================
+// DATABASE
+// =========================
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
