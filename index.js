@@ -12,7 +12,12 @@ const PORT = process.env.PORT || 5000;
 // CORS
 app.use(
   cors({
-    origin: ["danjitech.com", "www.danjitech.com", "http://localhost:5173"],
+    origin: [
+      "danjitech.com",
+      "www.danjitech.com",
+      "https://danjitech.com",
+      "http://localhost:5173",
+    ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   }),
