@@ -17,6 +17,7 @@ app.use(
       "www.danjitech.com",
       "https://danjitech.com",
       "http://localhost:5173",
+      "https://www.danjitech.com",
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
